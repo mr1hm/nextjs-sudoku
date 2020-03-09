@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+
+<body>
+  <button id="log-in-with-google">Log In With Google</button>
+  <script src="https://apis.google.com/js/client:platform.js"></script>
+  <script>
+    gapi.load('auth2', function () {
+      auth2 = gapi.auth2.init({
+        client_id: '<%= process.env.GOOGLE_OAUTH_CLIENT_ID %>'
+      })
+    })
+  </script>
+  <script>
+    document.querySelector('#log-in-with-google').addEventListener('click', () => {
+      auth2
+        .grantOfflineAccess()
+        .then(authResult => {
+          const req = new XMLHttpRequest()
+          req.addEventListener('load', () => {
+            window.location.pathname = '/'
+          })
+          req.addEventListener('error', () => {
+            console.error(err);
+            alert('FAIL')
+          })
+          req.open('POST', '/api/auth')
+          req.setRequestHeader('Content-Type', 'application/json')
+          req.send(JSON.stringify(authResult))
+        })
+        .catch(err => {
+          console.error(err)
+          alert('FAIL')
+        })
+    })
+  </script>
+</body>
+
+</html>
