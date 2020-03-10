@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon ."
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -24,15 +26,18 @@
   },
   "homepage": "https://github.com/mr1hm/nextjs-sudoku#readme",
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
-    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "googleapis": "^47.0.0",
+    "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.2.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "reactstrap": "^8.4.1",
     "session-file-store": "^1.4.0"
   },
   "devDependencies": {
